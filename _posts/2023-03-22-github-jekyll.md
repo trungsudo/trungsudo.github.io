@@ -21,7 +21,6 @@
 - Cách 1: Chỉ thao tác trên webUI: Làm theo hướng dẫn tại [Getting started](https://chirpy.cotes.page/posts/getting-started/)
   -  Tạo github project mới bằng cách fork từ theme project hoặc từ theme template. Ở đây ta dùng template
   
-  ![FromTemplate](/assets/img/2023-03-22/1-from-template.png)
   
 - Cách 2: Chỉ dùng dòng lệnh thì làm như sau:
 
