@@ -29,7 +29,7 @@ tags: [jekyll, github]
 - Cách 1: Chỉ thao tác trên webUI: Làm theo hướng dẫn tại [Getting started](https://chirpy.cotes.page/posts/getting-started/)
   -  Tạo github project mới bằng cách fork từ theme project hoặc từ theme template. Ở đây ta dùng template, truy cập [Chirpy Starter](https://github.com/cotes2020/chirpy-starter), chọn <kbd>Use this template</kbd> > <kbd>Create a new repository</kbd>
 
-![FromTemplate](/assets/img/2023-03-22/1-from-template.png)
+![FromTemplate](/assets/2023-03-22/1-from-template.png)
   
   
 - Cách 2: Chỉ dùng dòng lệnh thì làm như sau:
