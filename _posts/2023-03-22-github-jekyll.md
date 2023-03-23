@@ -1,7 +1,5 @@
 ---
 title: Host a static website with GithubPage
-author: TrungPhan
-date: 2023-03-22 14:12:00 
 categories: [jekyll, github]
 tags: [jekyll, github]
 ---
