@@ -27,10 +27,7 @@ tags: [jekyll, github]
 - Có thể tạo mới một trang web bằng jekyll bằng lệnh *jekyll new*, nhưng như đã nói ở trên chúng ta sẽ không tạo site từ đầu mà sẽ từ một theme có sẵn. Chọn theme nào thật ưng là ưng rồi clone về, trong ví dụ này ta dùng [Jekyll Theme Chirpy](https://github.com/cotes2020/jekyll-theme-chirpy).
 
 - Cách 1: Chỉ thao tác trên webUI: Làm theo hướng dẫn tại [Getting started](https://chirpy.cotes.page/posts/getting-started/)
-  -  Tạo github project mới bằng cách fork từ theme project hoặc từ theme template. Ở đây ta dùng template, truy cập [Chirpy Starter](https://github.com/cotes2020/chirpy-starter), chọn <kbd>Use this template</kbd> > <kbd>Create a new repository</kbd>
-
-![FromTemplate](/assets/2023-03-22/1-from-template.png)
-  
+  -  Tạo github project mới bằng cách fork từ theme project hoặc từ theme template. Ở đây ta dùng template, truy cập [Chirpy Starter](https://github.com/cotes2020/chirpy-starter), chọn <kbd>Use this template</kbd> > <kbd>Create a new repository</kbd>  
   
 - Cách 2: Chỉ dùng dòng lệnh thì làm như sau:
 
