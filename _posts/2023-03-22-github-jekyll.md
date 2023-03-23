@@ -1,3 +1,11 @@
+---
+title: Host a static website with GithubPage
+author: TrungPhan
+date: 2023-03-22 14:12:00 
+categories: [jekyll, github]
+tags: [jekyll, github]
+---
+
 # Host a static website with github
 
 - [Github Pages](https://pages.github.com/) cho phép ta host một trang web miễn phí tại đường dẫn *https://\<username\>.github.io*
