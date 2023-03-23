@@ -16,7 +16,7 @@ tags: [jekyll, github]
 ## Create a professional static webpage with Jeklly
 
 > Ta hoàn toàn không cần cài môi trưòng Jeklly ở local mà vẫn có thể deploy trực tiếp lên github vì bản thân GithubPage dùng Jekyll rồi.
-{: .prompt-tip }
+{: .prompt-info }
 
 - Nhằm mục đích xem trước các thay đổi mà không cần push lên github nên ta sẽ tiến hành setup môi trường ở local :))
 
