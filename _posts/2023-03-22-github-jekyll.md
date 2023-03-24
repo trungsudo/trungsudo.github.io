@@ -18,7 +18,7 @@ tags: [jekyll, github]
 > Ta hoàn toàn không cần cài môi trưòng Jeklly ở local mà vẫn có thể deploy trực tiếp lên github vì bản thân GithubPage dùng Jekyll rồi.
 {: .prompt-info }
 
-- Nhằm mục đích xem trước các thay đổi mà không cần push lên github thì nên setup môi trường ở local (dùng cách 2 dưới đây)
+- Nhằm mục đích xem trước các thay đổi mà không cần push lên github thì nên setup môi trường Jekyll ở local (dùng cách 2 dưới đây)
 
 ### Setup Jeklly environment
 
@@ -28,6 +28,9 @@ tags: [jekyll, github]
 
   - **Cách 1:** Chỉ thao tác trên webUI: Làm theo hướng dẫn tại [Getting started](https://chirpy.cotes.page/posts/getting-started/)
     -  Tạo github project mới bằng cách fork từ theme project hoặc từ theme template. Ở đây ta dùng template, truy cập [Chirpy Starter](https://github.com/cotes2020/chirpy-starter), chọn <kbd>Use this template</kbd> > <kbd>Create a new repository</kbd>
+    
+    ![FromTemplate](/assets/2023-03-22/1-from-template.png)
+    
     -  Đặt tên repo dưới định dạng *username.github.io*, với username là github username của bạn
 
   - **Cách 2:** Tạo môi trườngChỉ dùng dòng lệnh thì làm như sau:
@@ -61,5 +64,5 @@ tags: [jekyll, github]
 
 ## Host a static website with Github
 
-- Nếu thực hiện theo **cách 1** thì không cần làm gì thêm, bạn đã có thể truy cập vào địa chỉ https://username.github.io để xem
+- Nếu thực hiện theo **cách 1** thì không cần làm gì thêm, bạn đã có thể truy cập vào địa chỉ **https://\<username\>.github.io** để xem
 - Còn nếu làm theo **cách 2** thì phải push lên đã :))
