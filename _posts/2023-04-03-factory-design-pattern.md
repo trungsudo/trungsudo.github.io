@@ -1,5 +1,5 @@
 ---
-title: Factory Design Pattern
+title: \[Design Pattern\] Factory Design Pattern
 categories: [design pattern, creational pattern]
 tags: [design pattern, creational pattern]
 ---
