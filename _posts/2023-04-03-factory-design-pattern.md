@@ -1,3 +1,10 @@
+---
+title: [Design Pattern] Factory Design Pattern
+categories: [design pattern, creational pattern]
+tags: [design pattern, creational pattern]
+---
+
+
 # Factory Design Pattern
 
 ## Bối cảnh sử dụng
