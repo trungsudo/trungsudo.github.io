@@ -20,7 +20,7 @@ mermaid: true
 - `Factory Design Pattern` thuộc nhóm khái niệm tạo lập *(Creational Pattern)*.
 - Mục đích của nó là cung cấp một giao diện để tạo ra các đối tượng trong một lớp cha, nhưng cho phép các lớp con thay đổi loại đối tượng sẽ được tạo.
 
-<pre class="mermaid">
+```mermaid
 classDiagram
 direction LR
 
@@ -53,7 +53,7 @@ class PDFBook {
 class EpubBook {
   +readBook() 
 }
-</pre>
+```
 
 ## Cách hoạt động
 
