@@ -141,3 +141,49 @@ func main() {
 ## So sánh với các design pattern khác
 - `Factory Pattern` tập trung vào việc tạo ra một thể hiện của lớp, trong khi `Singleton` đảm bảo rằng chỉ có một thể hiện của lớp được tạo ra.
 - `Prototype Pattern` được sử dụng khi việc tạo một thể hiện mới của một lớp là quá tốn kém, trong khi `Singleton` được sử dụng để đảm bảo chỉ có một thể hiện của lớp.
+
+### First tabs
+
+{% tabs log %}
+
+{% tab log php %}
+```php
+var_dump('hello');
+```
+{% endtab %}
+
+{% tab log js %}
+```javascript
+console.log('hello');
+```
+{% endtab %}
+
+{% tab log ruby %}
+```javascript
+pputs 'hello'
+```
+{% endtab %}
+
+{% endtabs %}
+
+### Second tabs
+
+{% tabs data-struct %}
+
+{% tab data-struct yaml %}
+```yaml
+hello:
+  - 'whatsup'
+  - 'hi'
+```
+{% endtab %}
+
+{% tab data-struct json %}
+```json
+{
+    "hello": ["whatsup", "hi"]
+}
+```
+{% endtab %}
+
+{% endtabs %}
