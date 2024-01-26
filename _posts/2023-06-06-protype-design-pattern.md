@@ -4,43 +4,51 @@ categories: [design pattern, creational pattern]
 tags: [design pattern, creational pattern]
 mermaid: true
 ---
-
-# Prototype Design Pattern
+# Giới thiệu về Prototype Design Pattern
 
 ## Vấn đề
 
-- Tình huống cần tạo ra các đối tượng có cấu trúc và trạng thái giống nhau, việc tạo mới từ đầu nhiều đối tượng giống nhau không chỉ tốn thời gian mà còn làm tăng bộ nhớ sử dụng.
+- Bạn cần tạo ra một số thể hiện của một lớp cụ thể, hãy gọi là `ComplexObject`, mà việc khởi tạo nó tốn kém về mặt tài nguyên và thời gian.
+- Điều này đặc biệt quan trọng khi `ComplexObject` cần được tạo nhanh chóng trong một vòng lặp.
+- Trong trường hợp này, việc sử dụng `Prototype Design Pattern` có thể là một giải pháp hiệu quả.
 
 ## Giải pháp
-- `Prototype Design Pattern` ra đời để giải quyết vấn đề này.
-- Pattern này cho phép sao chép các đối tượng hiện có mà không làm cho code của bạn phụ thuộc vào các lớp của chúng.
-- Điều này giúp giảm bớt thời gian tạo mới đối tượng và giảm bộ nhớ sử dụng.
+
+- `Prototype Design Pattern` cho phép bạn sao chép các đối tượng hiện có mà không làm cho code của bạn phụ thuộc vào các lớp của chúng.
+- Khi áp dụng pattern này, thay vì tạo mới `ComplexObject` từ đầu mỗi lần, bạn có thể sao chép đối tượng đã tồn tại. Điều này giúp tiết kiệm tài nguyên và thời gian, đặc biệt khi việc tạo đối tượng mới là một quá trình tốn kém.
 
 ## Một số ví dụ thực tế
-`Prototype Design Pattern` thường được sử dụng trong các tình huống sau:
-- Khi việc tạo một đối tượng mới từ đầu là tốn kém về mặt tài nguyên và thời gian.
-- Khi bạn muốn giữ lại trạng thái của một đối tượng để sử dụng lại sau này.
+
+- `Prototype Design Pattern` thường được sử dụng trong các tình huống sau:
+  - Khi các lớp cụ thể được xác định tại thời gian chạy.
+  - Khi việc tạo ra một phiên bản mới của một đối tượng là một quá trình tốn kém và bạn muốn tối ưu hóa hiệu suất.
 
 ## Khái niệm
-- `Prototype Design Pattern` bao gồm hai thành phần chính:
-  - **Prototype**: đây là interface hoặc abstract class định nghĩa phương thức `clone()`.
-  - **ConcretePrototype**: đây là class cụ thể thực hiện phương thức `clone()`.
 
-- Sơ đồ UML thể hiện `Prototype Design Pattern`:
+- Prototype Design Pattern bao gồm các thành phần sau:
+  - **Prototype**: Đây là interface hoặc lớp trừu tượng định nghĩa phương thức `clone()`.
+  - **ConcretePrototype**: Đây là lớp cụ thể thực hiện phương thức `clone()` để tạo và trả về một bản sao của chính nó.
+  - **Client**: Đây là lớp sử dụng phương thức `clone()` để tạo ra một bản sao của đối tượng.
+
+- Sơ đồ UML thể hiện Prototype Design Pattern:
 
   ```mermaid
   classDiagram
       Prototype <|-- ConcretePrototype
-      class Prototype {
+      Client --* Prototype
+      class Prototype{
           +clone(): Prototype
       }
-      class ConcretePrototype {
+      class ConcretePrototype{
           +clone(): Prototype
+      }
+      class Client{
+          -prototype: Prototype
       }
   ```
 
 ## Code
-- Dưới đây là ví dụ về `Prototype Design Pattern` trong C++ và Golang.
+- Dưới đây là ví dụ về cách sử dụng Prototype Design Pattern trong C++ và Golang:
 
 C++:
 ```cpp
@@ -50,7 +58,7 @@ C++:
 class Prototype {
 public:
     virtual std::unique_ptr<Prototype> clone() const = 0;
-    virtual void execute() const = 0;
+    virtual void doSomething() const = 0;
 };
 
 class ConcretePrototype : public Prototype {
@@ -59,15 +67,19 @@ public:
         return std::make_unique<ConcretePrototype>(*this);
     }
 
-    void execute() const override {
-        std::cout << "Executing the prototype!\n";
+    void doSomething() const override {
+        std::cout << "Doing something...\n";
     }
 };
 
+void clientCode(const Prototype& prototype) {
+    auto copy = prototype.clone();
+    copy->doSomething();
+}
+
 int main() {
-    std::unique_ptr<Prototype> prototype = std::make_unique<ConcretePrototype>();
-    std::unique_ptr<Prototype> clonedPrototype = prototype->clone();
-    clonedPrototype->execute();
+    ConcretePrototype prototype;
+    clientCode(prototype);
     return 0;
 }
 ```
@@ -80,35 +92,44 @@ import "fmt"
 
 type Prototype interface {
 	Clone() Prototype
-	Execute()
+	DoSomething()
 }
 
 type ConcretePrototype struct{}
 
-func (p *ConcretePrototype) Clone() Prototype {
+func (c *ConcretePrototype) Clone() Prototype {
 	return &ConcretePrototype{}
 }
 
-func (p *ConcretePrototype) Execute() {
-	fmt.Println("Executing the prototype!")
+func (c *ConcretePrototype) DoSomething() {
+	fmt.Println("Doing something...")
+}
+
+func clientCode(prototype Prototype) {
+	copy := prototype.Clone()
+	copy.DoSomething()
 }
 
 func main() {
 	prototype := &ConcretePrototype{}
-	clonedPrototype := prototype.Clone()
-	clonedPrototype.Execute()
+	clientCode(prototype)
 }
 ```
 
 ## Ưu nhược điểm
 
 ### Ưu điểm
-- Giảm thiểu việc tạo mới từ đầu, giúp tiết kiệm tài nguyên hệ thống.
-- Có thể thêm hoặc xóa các đối tượng tại runtime.
+- Có thể sao chép các đối tượng mà không cần phụ thuộc vào lớp của chúng.
+- Có thể loại bỏ việc mã hóa cứng các lớp.
+- Có thể giảm số lượng lớp nhà máy mà ứng dụng của bạn cần tạo ra.
+- Có thể sao chép các đối tượng có trạng thái phức tạp.
+- 
+### Nhược điểm
 
-## Nhược điểm:
-- Việc clone đối tượng có thể gây ra vấn đề với các đối tượng có trạng thái nội tại.
+- Sao chép các đối tượng phức tạp có thể là một quá trình tốn kém về mặt tài nguyên.
+- Một số lớp con có thể hỗ trợ việc sao chép, trong khi một số lớp khác có thể không hỗ trợ.
 
 ## So sánh với các design pattern khác
-- `Factory Method`: thay vì phải tạo mới từ đầu, `Prototype Pattern` cho phép sao chép các đối tượng đã tồn tại.
-- `Abstract Factory`: `Prototype` có thể hỗ trợ việc sao chép và tạo mới các đối tượng từ các lớp cụ thể mà không cần phụ thuộc vào interface của chúng.
+- **Factory Method**: Prototype có thể hỗ trợ việc sao chép các đối tượng mà không cần phụ thuộc vào lớp của chúng. Factory Method tạo ra một đối tượng mới bằng cách gọi một phương thức nhà máy, trong khi Prototype tạo ra một đối tượng mới bằng cách sao chép một đối tượng hiện có.
+- **Abstract Factory**: Prototype có thể được sử dụng khi bạn cần sao chép các đối tượng mà không cần phụ thuộc vào lớp của chúng. Abstract Factory tạo ra một gia đình các sản phẩm liên quan mà không cần chỉ định các lớp cụ thể của chúng.
+- **Builder**: Prototype có thể được sử dụng khi bạn cần sao chép các đối tượng mà không cần phụ thuộc vào lớp của chúng. Builder cho phép bạn tạo ra các đối tượng phức tạp theo từng bước.
