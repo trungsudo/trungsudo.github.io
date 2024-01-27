@@ -1,7 +1,7 @@
 ---
 title: Singleton Design Pattern
 categories: [design pattern, creational pattern]
-tags: [design pattern, creational pattern]
+tags: [design pattern, creational pattern, ai generated]
 mermaid: true
 ---
 
