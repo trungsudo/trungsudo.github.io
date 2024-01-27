@@ -1,10 +1,10 @@
 ---
 title: Protype Design Pattern
 categories: [design pattern, creational pattern]
-tags: [design pattern, creational pattern]
+tags: [design pattern, creational pattern, ai generated]
 mermaid: true
 ---
-# Giới thiệu về Prototype Design Pattern
+# Prototype Design Pattern
 
 ## Vấn đề
 
