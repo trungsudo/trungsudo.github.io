@@ -35,7 +35,7 @@ mermaid: true
 
 ## Khái niệm
 
-- Là một design pattern thuộc nhóm structural pattern, cho phép bạn xây dựng một cấu trúc cây để biểu diễn các đối tượng có quan hệ phân cấp hoặc tổ chức. Bạn có thể xem mỗi đối tượng trong cây là một đối tượng duy nhất hoặc là một nhóm đối tượng gồm nhiều đối tượng con.
+- Là một design pattern thuộc nhóm *structural pattern*, cho phép bạn xây dựng một cấu trúc cây để biểu diễn các đối tượng có quan hệ phân cấp hoặc tổ chức. Bạn có thể xem mỗi đối tượng trong cây là một đối tượng duy nhất hoặc là một nhóm đối tượng gồm nhiều đối tượng con.
 - Sử dụng một lớp trừu tượng (abstract class) hoặc một interface để định nghĩa một giao diện chung cho tất cả các thành phần trong cây. Giao diện này bao gồm các phương thức để quản lý và thao tác với các thành phần con. Các lớp con sẽ kế thừa hoặc triển khai giao diện này và tuỳ biến theo nhu cầu.
 - Composite pattern bao gồm ba thành phần chính:
 
