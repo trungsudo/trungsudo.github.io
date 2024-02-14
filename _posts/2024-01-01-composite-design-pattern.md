@@ -294,17 +294,17 @@ func main() {
 
 ### Ưu điểm
 
-- Composite design pattern cho phép bạn tạo ra các cấu trúc cây phản ánh các đối tượng phức tạp được tạo ra từ các đối tượng đơn giản hơn.
-- Composite design pattern cho phép bạn thực hiện các thao tác trên cả nhóm đối tượng hoặc từng đối tượng riêng lẻ một cách đồng nhất và minh bạch.
-- Composite design pattern giúp bạn tuân thủ nguyên lý SOLID, đặc biệt là nguyên lý Open/Closed và Liskov Substitution.
+- Tạo ra các cấu trúc cây phản ánh các đối tượng phức tạp được tạo ra từ các đối tượng đơn giản hơn.
+- Thực hiện các thao tác trên cả nhóm đối tượng hoặc từng đối tượng riêng lẻ một cách đồng nhất và minh bạch.
+- Tuân thủ nguyên lý SOLID, đặc biệt là nguyên lý Open/Closed và Liskov Substitution.
 
 ### Nhược điểm
 
-- Composite design pattern có thể làm cho mã nguồn phức tạp hơn nếu bạn phải xử lý nhiều loại đối tượng khác nhau trong cùng một cấu trúc cây.
-- Composite design pattern có thể làm cho mã nguồn khó bảo trì hơn nếu bạn thêm hoặc xoá các loại đối tượng mới vào cấu trúc cây.
+- Làm cho mã nguồn phức tạp hơn nếu bạn phải xử lý nhiều loại đối tượng khác nhau trong cùng một cấu trúc cây.
+- Khó bảo trì hơn nếu bạn thêm hoặc xoá các loại đối tượng mới vào cấu trúc cây.
 
 ## So sánh với các design pattern khác
 
-- Composite design pattern có điểm chung với Decorator design pattern là cả hai đều dựa trên cấu trúc cây để tổ chức các đối tượng. Tuy nhiên, Decorator design pattern nhằm mục đích mở rộng chức năng của một đối tượng bằng cách bọc nó bởi một lớp khác, trong khi Composite design pattern nhằm mục đích tạo ra các đối tượng phức tạp từ các đối tượng đơn giản hơn.
-- Composite design pattern có điểm chung với Flyweight design pattern là cả hai đều cho phép bạn tiết kiệm bộ nhớ khi làm việc với nhiều đối tượng. Tuy nhiên, Flyweight design pattern làm điều này bằng cách chia sẻ các trạng thái bên ngoài của các đối tượng, trong khi Composite design pattern làm điều này bằng cách sử dụng các đối tượng nhỏ hơn để xây dựng các đối tượng lớn hơn.
+- `Composite design pattern` có điểm chung với `Decorator design pattern` là cả hai đều dựa trên cấu trúc cây để tổ chức các đối tượng. Tuy nhiên, `Decorator design pattern` nhằm mục đích mở rộng chức năng của một đối tượng bằng cách bọc nó bởi một lớp khác, trong khi `Composite design pattern` nhằm mục đích tạo ra các đối tượng phức tạp từ các đối tượng đơn giản hơn.
+- `Composite design pattern` có điểm chung với `Flyweight design pattern` là cả hai đều cho phép bạn tiết kiệm bộ nhớ khi làm việc với nhiều đối tượng. Tuy nhiên, `Flyweight design pattern` làm điều này bằng cách chia sẻ các trạng thái bên ngoài của các đối tượng, trong khi `Composite design pattern` làm điều này bằng cách sử dụng các đối tượng nhỏ hơn để xây dựng các đối tượng lớn hơn.
 
