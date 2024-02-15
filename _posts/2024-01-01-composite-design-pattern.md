@@ -17,14 +17,7 @@ mermaid: true
 - Một cách giải quyết hiệu quả cho vấn đề này là sử dụng `Composite design pattern`.
 - Pattern này cho phép bạn xây dựng một cấu trúc cây để biểu diễn các đối tượng phân cấp.
 - Trong cây này, các nút lá là các đối tượng đơn lẻ, còn các nút trong là các nhóm đối tượng. Tất cả các nút đều kế thừa từ một lớp cha chung có chứa các phương thức trừu tượng để thực hiện các thao tác chung cho tất cả các loại đối tượng. Nhờ vậy, bạn có thể xử lý các nút lá và các nút trong theo cùng một giao diện, không cần quan tâm đến kiểu của chúng.
-- Để áp dụng `Composite pattern`, bạn cần thiết kế một interface chung cho cả các đối tượng lá (leaf) và các đối tượng tổng hợp (composite). Interface này gọi là Component và nó chứa các phương thức chung cho việc thao tác với các đối tượng. Ví dụ, bạn có thể có một phương thức *operation()* để hiển thị hoặc vẽ các đối tượng.
-- Tiếp theo, bạn cần tạo ra các lớp con của `Component` để biểu diễn các loại đối tượng lá và các lớp *Composite* khác nhau.
-  - Các lớp lá là những đối tượng không có con và chỉ thực hiện phương thức *operation()* theo cách riêng của chúng.
-  - Các lớp *Composite* là những đối tượng có phần tử con và chúng lưu trữ một danh sách các con trong một trường gọi là children. Các lớp tổng hợp cũng cung cấp các phương thức để thêm, xóa hoặc lấy ra các con của chúng, ví dụ *add(), remove()* và *getChild()*. Khi thực hiện phương thức *operation()*, các lớp tổng hợp sẽ duyệt qua danh sách con của chúng và gọi operation() cho từng con.
-- Cuối cùng, bạn có thể sử dụng các lớp lá và *Composite* để xây dựng cây của bạn. Bạn có thể kết hợp nhiều lớp tổng hợp lại với nhau để tạo ra các cấu trúc phức tạp hơn. Bạn cũng có thể thêm hoặc xóa các lớp lá vào hoặc ra khỏi các lớp *Composite* một cách linh hoạt.
-- Khi bạn cần thao tác với toàn bộ cây hoặc một phần của nó, bạn chỉ cần gọi phương thức *operation()* trên đối tượng gốc của cây hoặc bất kỳ đối tượng nào bạn muốn. Bạn không cần quan tâm đến loại của đối tượng đó là lá hay *Composite*, vì chúng đều tuân theo interface Component chung.
 - Sau khi áp dụng pattern này, vấn đề sẽ được giải quyết một cách gọn gàng và hiệu quả. Bạn chỉ cần viết một lớp cha `Shape` để định nghĩa các phương thức trừu tượng cho việc di chuyển, xoay, thu phóng và vẽ các hình vẽ. Sau đó, bạn viết các lớp con `Line`, `Circle`, `Rectangle` để kế thừa từ `Shape` và triển khai các phương thức này theo từng loại hình vẽ. Cuối cùng, bạn viết một lớp `CompositeShape` để kế thừa từ `Shape` và chứa một danh sách các đối tượng `Shape` khác. Lớp này cũng triển khai các phương thức của `Shape`, nhưng thay vì thực hiện chúng trên chính nó, nó sẽ gọi chúng trên từng đối tượng con trong danh sách. Như vậy, bạn có thể tạo ra các hình vẽ phức tạp từ các hình vẽ cơ bản và thao tác với chúng như một đối tượng duy nhất.
-
 ## Một số ví dụ thực tế
 
 - Trong ứng dụng Microsoft Word, khi bạn chèn một hình ảnh vào văn bản, bạn có thể nhóm nó với các đối tượng khác như văn bản, hình vẽ, biểu đồ... và thao tác với nhóm đó như một đối tượng duy nhất. Bạn có thể di chuyển, xoay, thu phóng cả nhóm hoặc chỉ một thành phần trong nhóm. Đây chính là cách mà Word sử dụng Composite pattern để quản lý các đối tượng đồ họa.
@@ -42,7 +35,14 @@ mermaid: true
   - Component: là lớp cha chung cho tất cả các loại đối tượng trong cây. Nó khai báo các phương thức trừu tượng cho việc quản lý và thao tác các đối tượng con. Nó cũng có thể triển khai các phương thức mặc định cho các nút lá.
   - Leaf: là lớp con của Component, biểu diễn các đối tượng không có con. Nó triển khai các phương thức của Component theo từng loại đối tượng.
   - Composite: là lớp con của Component, biểu diễn các đối tượng có con. Nó chứa một danh sách các đối tượng Component và triển khai các phương thức của Component bằng cách gọi chúng trên từng đối tượng con.
-    
+
+- Để áp dụng `Composite pattern`, bạn cần thiết kế một interface chung cho cả các đối tượng lá (leaf) và các đối tượng tổng hợp (composite). Interface này gọi là Component và nó chứa các phương thức chung cho việc thao tác với các đối tượng. Ví dụ, bạn có thể có một phương thức *operation()* để hiển thị hoặc vẽ các đối tượng.
+- Tiếp theo, bạn cần tạo ra các lớp con của `Component` để biểu diễn các loại đối tượng lá và các lớp *Composite* khác nhau.
+  - Các lớp lá là những đối tượng không có con và chỉ thực hiện phương thức *operation()* theo cách riêng của chúng.
+  - Các lớp *Composite* là những đối tượng có phần tử con và chúng lưu trữ một danh sách các con trong một trường gọi là children. Các lớp tổng hợp cũng cung cấp các phương thức để thêm, xóa hoặc lấy ra các con của chúng, ví dụ *add(), remove()* và *getChild()*. Khi thực hiện phương thức *operation()*, các lớp tổng hợp sẽ duyệt qua danh sách con của chúng và gọi operation() cho từng con.
+- Cuối cùng, bạn có thể sử dụng các lớp lá và *Composite* để xây dựng cây của bạn. Bạn có thể kết hợp nhiều lớp tổng hợp lại với nhau để tạo ra các cấu trúc phức tạp hơn. Bạn cũng có thể thêm hoặc xóa các lớp lá vào hoặc ra khỏi các lớp *Composite* một cách linh hoạt.
+- Khi bạn cần thao tác với toàn bộ cây hoặc một phần của nó, bạn chỉ cần gọi phương thức *operation()* trên đối tượng gốc của cây hoặc bất kỳ đối tượng nào bạn muốn. Bạn không cần quan tâm đến loại của đối tượng đó là lá hay *Composite*, vì chúng đều tuân theo interface Component chung.
+
 - Sơ đồ UML thể hiện `Composite design pattern`:
   ```mermaid
   classDiagram
