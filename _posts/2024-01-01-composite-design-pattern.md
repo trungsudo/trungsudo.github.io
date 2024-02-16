@@ -6,7 +6,7 @@ mermaid: true
 ---
 
 ## Vấn đề
-- Giả sử bạn đang phát triển một ứng dụng đồ họa cho phép người dùng tạo ra các hình vẽ phức tạp từ các hình cơ bản như đường thẳng, hình tròn, hình chữ nhật.
+- Giả sử một ứng dụng đồ họa cho phép người dùng tạo ra các hình vẽ phức tạp từ các hình cơ bản như đường thẳng, hình tròn, hình chữ nhật.
 - Bạn muốn người dùng có thể nhóm các hình cơ bản lại thành một đối tượng duy nhất và thao tác với nó như một hình vẽ riêng biệt. Tuy nhiên, bạn cũng muốn người dùng có thể thay đổi các thuộc tính của từng hình cơ bản trong nhóm một cách linh hoạt. Ví dụ, bạn muốn người dùng có thể di chuyển, xoay, thu phóng cả nhóm hình vẽ hoặc chỉ một hình cụ thể trong nhóm.
 - Vấn đề bạn gặp phải là làm sao để thiết kế một cấu trúc lớp cho phép bạn xử lý các đối tượng đơn lẻ và các nhóm đối tượng theo cùng một cách.
 - Nếu bạn sử dụng một lớp cha chung cho tất cả các loại hình vẽ, bạn sẽ phải kiểm tra kiểu của đối tượng trước khi thực hiện các thao tác.
@@ -20,11 +20,11 @@ mermaid: true
 - Sau khi áp dụng pattern này, vấn đề sẽ được giải quyết một cách gọn gàng và hiệu quả. Bạn chỉ cần viết một lớp cha `Shape` để định nghĩa các phương thức trừu tượng cho việc di chuyển, xoay, thu phóng và vẽ các hình vẽ. Sau đó, bạn viết các lớp con `Line`, `Circle`, `Rectangle` để kế thừa từ `Shape` và triển khai các phương thức này theo từng loại hình vẽ. Cuối cùng, bạn viết một lớp `CompositeShape` để kế thừa từ `Shape` và chứa một danh sách các đối tượng `Shape` khác. Lớp này cũng triển khai các phương thức của `Shape`, nhưng thay vì thực hiện chúng trên chính nó, nó sẽ gọi chúng trên từng đối tượng con trong danh sách. Như vậy, bạn có thể tạo ra các hình vẽ phức tạp từ các hình vẽ cơ bản và thao tác với chúng như một đối tượng duy nhất.
 ## Một số ví dụ thực tế
 
-- Trong ứng dụng Microsoft Word, khi bạn chèn một hình ảnh vào văn bản, bạn có thể nhóm nó với các đối tượng khác như văn bản, hình vẽ, biểu đồ... và thao tác với nhóm đó như một đối tượng duy nhất. Bạn có thể di chuyển, xoay, thu phóng cả nhóm hoặc chỉ một thành phần trong nhóm. Đây chính là cách mà Word sử dụng Composite pattern để quản lý các đối tượng đồ họa.
+- Trong ứng dụng `Microsoft Word`, khi bạn chèn một hình ảnh vào văn bản, bạn có thể nhóm nó với các đối tượng khác như văn bản, hình vẽ, biểu đồ... và thao tác với nhóm đó như một đối tượng duy nhất. Bạn có thể di chuyển, xoay, thu phóng cả nhóm hoặc chỉ một thành phần trong nhóm. Đây chính là cách mà `MsWord` sử dụng `Composite pattern` để quản lý các đối tượng đồ họa.
 
-- Trong ứng dụng Adobe Illustrator, khi bạn tạo ra một hình vẽ phức tạp từ nhiều hình cơ bản, bạn có thể nhóm chúng lại thành một layer và xem layer đó như một hình vẽ riêng biệt. Bạn có thể di chuyển, xoay, thu phóng cả layer hoặc chỉ một thành phần trong layer. Đây cũng là cách mà Illustrator sử dụng Composite pattern để quản lý các layer đồ họa.
+- Trong ứng dụng `Adobe Illustrator`, khi bạn tạo ra một hình vẽ phức tạp từ nhiều hình cơ bản, bạn có thể nhóm chúng lại thành một layer và xem layer đó như một hình vẽ riêng biệt. Bạn có thể di chuyển, xoay, thu phóng cả layer hoặc chỉ một thành phần trong layer. Đây là cách mà Illustrator sử dụng `Composite pattern` để quản lý các layer đồ họa.
 
-- Trong ứng dụng Google Maps, khi bạn xem bản đồ của một khu vực, bạn có thể bật hoặc tắt các lớp khác nhau để hiển thị các thông tin khác nhau như địa hình, giao thông, công trình... Mỗi lớp là một nhóm các đối tượng đồ họa có liên quan, và bạn có thể xem cả lớp hoặc chỉ một đối tượng trong lớp. Đây cũng là cách mà Google Maps sử dụng Composite pattern để quản lý các lớp bản đồ.
+- Trong ứng dụng `Google Maps`, khi bạn xem bản đồ của một khu vực, bạn có thể bật hoặc tắt các lớp khác nhau để hiển thị các thông tin khác nhau như địa hình, giao thông, công trình... Mỗi lớp là một nhóm các đối tượng đồ họa có liên quan, và bạn có thể xem cả lớp hoặc chỉ một đối tượng trong lớp. Đây là cách mà `Google Maps` sử dụng `Composite pattern` để quản lý các lớp bản đồ.
 
 ## Khái niệm
 
