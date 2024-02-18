@@ -9,16 +9,16 @@ mermaid: true
 - Giả sử một ứng dụng đồ họa cho phép người dùng tạo ra các hình vẽ phức tạp từ các hình cơ bản như đường thẳng, hình tròn, hình chữ nhật.
 - Bạn muốn người dùng có thể nhóm các hình cơ bản lại thành một đối tượng duy nhất và thao tác với nó như một hình vẽ riêng biệt. Tuy nhiên, bạn cũng muốn người dùng có thể thay đổi các thuộc tính của từng hình cơ bản trong nhóm một cách linh hoạt. Ví dụ, bạn muốn người dùng có thể di chuyển, xoay, thu phóng cả nhóm hình vẽ hoặc chỉ một hình cụ thể trong nhóm.
 - Vấn đề bạn gặp phải là làm sao để thiết kế một cấu trúc lớp cho phép bạn xử lý các đối tượng đơn lẻ và các nhóm đối tượng theo cùng một cách.
-- Nếu bạn sử dụng một lớp cha chung cho tất cả các loại hình vẽ, bạn sẽ phải kiểm tra kiểu của đối tượng trước khi thực hiện các thao tác.
-- Nếu bạn sử dụng nhiều lớp khác nhau cho các loại hình vẽ khác nhau, bạn sẽ phải viết nhiều mã để xử lý các trường hợp khác nhau. Cả hai cách tiếp cận này đều làm cho mã nguồn của bạn phức tạp và khó bảo trì.
+  - Nếu bạn sử dụng một lớp cha chung cho tất cả các loại hình vẽ, bạn sẽ phải kiểm tra kiểu của đối tượng trước khi thực hiện các thao tác.
+  - Nếu bạn sử dụng nhiều lớp khác nhau cho các loại hình vẽ khác nhau, bạn sẽ phải viết nhiều mã để xử lý các trường hợp khác nhau. Cả hai cách tiếp cận này đều làm cho mã nguồn của bạn phức tạp và khó bảo trì.
 
 ## Giải pháp
 
-- Một cách giải quyết hiệu quả cho vấn đề này là sử dụng `Composite design pattern`.
-- Pattern này cho phép bạn xây dựng một cấu trúc cây để biểu diễn các đối tượng phân cấp.
+- Một cách giải quyết hiệu quả cho vấn đề này là sử dụng `Composite design pattern`. Pattern này cho phép bạn xây dựng một cấu trúc cây để biểu diễn các đối tượng phân cấp.
 - Trong cây này, các nút lá là các đối tượng đơn lẻ, còn các nút trong là các nhóm đối tượng. Tất cả các nút đều kế thừa từ một lớp cha chung có chứa các phương thức trừu tượng để thực hiện các thao tác chung cho tất cả các loại đối tượng. Nhờ vậy, bạn có thể xử lý các nút lá và các nút trong theo cùng một giao diện, không cần quan tâm đến kiểu của chúng.
 - Sau khi áp dụng pattern này, vấn đề sẽ được giải quyết một cách gọn gàng và hiệu quả. Bạn chỉ cần viết một lớp cha `Shape` để định nghĩa các phương thức trừu tượng cho việc di chuyển, xoay, thu phóng và vẽ các hình vẽ. Sau đó, bạn viết các lớp con `Line`, `Circle`, `Rectangle` để kế thừa từ `Shape` và triển khai các phương thức này theo từng loại hình vẽ. Cuối cùng, bạn viết một lớp `CompositeShape` để kế thừa từ `Shape` và chứa một danh sách các đối tượng `Shape` khác. Lớp này cũng triển khai các phương thức của `Shape`, nhưng thay vì thực hiện chúng trên chính nó, nó sẽ gọi chúng trên từng đối tượng con trong danh sách. Như vậy, bạn có thể tạo ra các hình vẽ phức tạp từ các hình vẽ cơ bản và thao tác với chúng như một đối tượng duy nhất.
-## Một số ví dụ thực tế
+  
+## Một số ví dụ
 
 - Trong ứng dụng `Microsoft Word`, khi bạn chèn một hình ảnh vào văn bản, bạn có thể nhóm nó với các đối tượng khác như văn bản, hình vẽ, biểu đồ... và thao tác với nhóm đó như một đối tượng duy nhất. Bạn có thể di chuyển, xoay, thu phóng cả nhóm hoặc chỉ một thành phần trong nhóm. Đây chính là cách mà `MsWord` sử dụng `Composite pattern` để quản lý các đối tượng đồ họa.
 
@@ -28,10 +28,9 @@ mermaid: true
 
 ## Khái niệm
 
-- Là một design pattern thuộc nhóm *structural pattern*, cho phép bạn xây dựng một cấu trúc cây để biểu diễn các đối tượng có quan hệ phân cấp hoặc tổ chức. Bạn có thể xem mỗi đối tượng trong cây là một đối tượng duy nhất hoặc là một nhóm đối tượng gồm nhiều đối tượng con.
-- Sử dụng một lớp trừu tượng (abstract class) hoặc một interface để định nghĩa một giao diện chung cho tất cả các thành phần trong cây. Giao diện này bao gồm các phương thức để quản lý và thao tác với các thành phần con. Các lớp con sẽ kế thừa hoặc triển khai giao diện này và tuỳ biến theo nhu cầu.
+- `Composite design pattern` là một design pattern thuộc nhóm *structural pattern*, cho phép bạn xây dựng một cấu trúc cây để biểu diễn các đối tượng có quan hệ phân cấp hoặc tổ chức. Bạn có thể xem mỗi đối tượng trong cây là một đối tượng duy nhất hoặc là một nhóm đối tượng gồm nhiều đối tượng con.
+- Sử dụng một lớp trừu tượng (abstract class) hoặc một interface để định nghĩa một interface chung cho tất cả các thành phần trong cây. Interface này bao gồm các phương thức để quản lý và thao tác với các thành phần con. Các lớp con sẽ kế thừa hoặc triển khai interface này và tuỳ biến theo nhu cầu.
 - Composite pattern bao gồm ba thành phần chính:
-
   - Component: là lớp cha chung cho tất cả các loại đối tượng trong cây. Nó khai báo các phương thức trừu tượng cho việc quản lý và thao tác các đối tượng con. Nó cũng có thể triển khai các phương thức mặc định cho các nút lá.
   - Leaf: là lớp con của Component, biểu diễn các đối tượng không có con. Nó triển khai các phương thức của Component theo từng loại đối tượng.
   - Composite: là lớp con của Component, biểu diễn các đối tượng có con. Nó chứa một danh sách các đối tượng Component và triển khai các phương thức của Component bằng cách gọi chúng trên từng đối tượng con.
