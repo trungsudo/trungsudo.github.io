@@ -20,11 +20,11 @@ mermaid: true
   
 ## Một số ví dụ
 
-- Trong ứng dụng `Microsoft Word`, khi bạn chèn một hình ảnh vào văn bản, bạn có thể nhóm nó với các đối tượng khác như văn bản, hình vẽ, biểu đồ... và thao tác với nhóm đó như một đối tượng duy nhất. Bạn có thể di chuyển, xoay, thu phóng cả nhóm hoặc chỉ một thành phần trong nhóm. Đây chính là cách mà `MsWord` sử dụng `Composite pattern` để quản lý các đối tượng đồ họa.
+- Trong `Microsoft Word`, khi bạn chèn một hình ảnh vào văn bản, bạn có thể nhóm nó với các đối tượng khác như văn bản, hình vẽ, biểu đồ... và thao tác với nhóm đó như một đối tượng duy nhất. Bạn có thể di chuyển, xoay, thu phóng cả nhóm hoặc chỉ một thành phần trong nhóm. Đây chính là cách mà `MsWord` sử dụng `Composite pattern` để quản lý các đối tượng đồ họa.
 
-- Trong ứng dụng `Adobe Illustrator`, khi bạn tạo ra một hình vẽ phức tạp từ nhiều hình cơ bản, bạn có thể nhóm chúng lại thành một layer và xem layer đó như một hình vẽ riêng biệt. Bạn có thể di chuyển, xoay, thu phóng cả layer hoặc chỉ một thành phần trong layer. Đây là cách mà Illustrator sử dụng `Composite pattern` để quản lý các layer đồ họa.
+- Trong `Adobe Illustrator`, khi bạn tạo ra một hình vẽ phức tạp từ nhiều hình cơ bản, bạn có thể nhóm chúng lại thành một layer và xem layer đó như một hình vẽ riêng biệt. Bạn có thể di chuyển, xoay, thu phóng cả layer hoặc chỉ một thành phần trong layer. Đây là cách mà Illustrator sử dụng `Composite pattern` để quản lý các layer đồ họa.
 
-- Trong ứng dụng `Google Maps`, khi bạn xem bản đồ của một khu vực, bạn có thể bật hoặc tắt các lớp khác nhau để hiển thị các thông tin khác nhau như địa hình, giao thông, công trình... Mỗi lớp là một nhóm các đối tượng đồ họa có liên quan, và bạn có thể xem cả lớp hoặc chỉ một đối tượng trong lớp. Đây là cách mà `Google Maps` sử dụng `Composite pattern` để quản lý các lớp bản đồ.
+- Trong `Google Maps`, khi bạn xem bản đồ của một khu vực, bạn có thể bật hoặc tắt các lớp khác nhau để hiển thị các thông tin khác nhau như địa hình, giao thông, công trình... Mỗi lớp là một nhóm các đối tượng đồ họa có liên quan, và bạn có thể xem cả lớp hoặc chỉ một đối tượng trong lớp. Đây là cách mà `Google Maps` sử dụng `Composite pattern` để quản lý các lớp bản đồ.
 
 ## Khái niệm
 
@@ -295,7 +295,7 @@ func main() {
 
 - Tạo ra các cấu trúc cây phản ánh các đối tượng phức tạp được tạo ra từ các đối tượng đơn giản hơn.
 - Thực hiện các thao tác trên cả nhóm đối tượng hoặc từng đối tượng riêng lẻ một cách đồng nhất và minh bạch.
-- Tuân thủ nguyên lý SOLID, đặc biệt là nguyên lý Open/Closed và Liskov Substitution.
+- Tuân thủ nguyên lý `SOLID`, đặc biệt là nguyên lý `Open/Closed` và `Liskov Substitution`.
 
 ### Nhược điểm
 
