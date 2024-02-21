@@ -94,3 +94,185 @@ mermaid: true
   	fmt.Println(x, y, x+y) // in ra kết quả
   }
   ```
+
+## Một số concurrency pattern phổ biến
+
+### Fan-in
+
+- Cho phép hợp nhất kết quả từ nhiều channel vào một channel duy nhất
+
+```go
+package main
+
+import (
+	"fmt"
+	"sync"
+)
+
+// fanIn nhận dữ liệu từ nhiều kênh và gửi vào một kênh duy nhất
+func fanIn(chans ...<-chan int) <-chan int {
+	out := make(chan int)
+	var wg sync.WaitGroup
+	wg.Add(len(chans))
+	for _, ch := range chans {
+		go func(c <-chan int) {
+			for n := range c {
+				out <- n
+			}
+			wg.Done()
+		}(ch)
+	}
+	go func() {
+		wg.Wait()
+		close(out)
+	}()
+	return out
+}
+
+// generator tạo ra một kênh gửi các số từ start đến end
+func generator(start, end int) <-chan int {
+	out := make(chan int)
+	go func() {
+		for i := start; i <= end; i++ {
+			out <- i
+		}
+		close(out)
+	}()
+	return out
+}
+
+func main() {
+	// tạo ra ba kênh gửi các số từ 1 đến 10, từ 11 đến 20 và từ 21 đến 30
+	c1 := generator(1, 10)
+	c2 := generator(11, 20)
+	c3 := generator(21, 30)
+
+	// gọi hàm fanIn để nhận dữ liệu từ ba kênh trên và gửi vào một kênh duy nhất
+	c := fanIn(c1, c2, c3)
+
+	// in ra các số nhận được từ kênh c
+	for n := range c {
+		fmt.Println(n)
+	}
+}
+```
+
+### Fan-out
+
+- Cho phép dữ liệu đọc từ một channel được gửi ra nhiều channel khác nhau
+
+```go
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+// fanOut gửi dữ liệu từ một kênh vào nhiều kênh khác nhau
+func fanOut(in <-chan int, n int) []<-chan int {
+	// tạo ra một slice chứa n kênh
+	out := make([]<-chan int, n)
+	for i := 0; i < n; i++ {
+		// tạo ra một kênh cho mỗi phần tử trong slice
+		out[i] = make(chan int)
+		// khởi chạy một goroutine để gửi dữ liệu từ kênh in vào kênh out[i]
+		go func(c chan int) {
+			for n := range in {
+				c <- n
+			}
+			close(c)
+		}(out[i].(chan int))
+	}
+	return out
+}
+
+// generator tạo ra một kênh gửi các số từ start đến end
+func generator(start, end int) <-chan int {
+	out := make(chan int)
+	go func() {
+		for i := start; i <= end; i++ {
+			out <- i
+		}
+		close(out)
+	}()
+	return out
+}
+
+// worker nhận dữ liệu từ một kênh và in ra màn hình
+func worker(id int, in <-chan int) {
+	for n := range in {
+		fmt.Printf("Worker %d received %d\n", id, n)
+		time.Sleep(time.Second) // giả lập thời gian xử lý
+	}
+}
+
+func main() {
+	// tạo ra một kênh gửi các số từ 1 đến 10
+	c := generator(1, 10)
+
+	// gọi hàm fanOut để gửi dữ liệu từ kênh c vào ba kênh khác nhau
+	chans := fanOut(c, 3)
+
+	// khởi chạy ba goroutine làm nhiệm vụ worker để nhận dữ liệu từ ba kênh trên
+	for i := 0; i < 3; i++ {
+		go worker(i+1, chans[i])
+	}
+
+	// đợi ba giây để các goroutine hoàn thành công việc
+	time.Sleep(3 * time.Second)
+}
+```
+
+### Pipeline
+
+- Một loạt các giai đoạn kết nối bởi các channel, trong đó mỗi giai đoạn là một nhóm các goroutine chạy cùng một hàm.
+- Mỗi giai đoạn nhận giá trị từ các channel đầu vào, thực hiện một số chức năng trên dữ liệu đó, thường tạo ra các giá trị mới, và gửi trả các giá trị qua các channel đầu ra.
+
+  ```go
+  package main
+  
+  import (
+  	"fmt"
+  	"math/rand"
+  	"time"
+  )
+  
+  // gen là một hàm chuyển đổi một danh sách các số nguyên thành một channel
+  // trả ra các số nguyên trong danh sách đó.
+  // Hàm gen bắt đầu một goroutine gửi các số nguyên trên channel
+  // và đóng channel khi tất cả các giá trị đã được gửi.
+  func gen(nums ...int) <-chan int {
+  	out := make(chan int)
+  	go func() {
+  		for _, n := range nums {
+  			out <- n
+  		}
+  		close(out)
+  	}()
+  	return out
+  }
+  
+  // sq nhận các số nguyên từ một channel và trả về một channel
+  // trả ra bình phương của mỗi số nguyên nhận được.
+  // Sau khi channel đầu vào được đóng và giai đoạn này đã gửi tất cả các giá ra channel output,
+  // nó đóng channel đầu ra.
+  func sq(in <-chan int) <-chan int {
+  	out := make(chan int)
+  	go func() {
+  		for n := range in {
+  			out <- n * n
+  		}
+  		close(out)
+  	}()
+  	return out
+  }
+  
+  func main() {
+  	// Thiết lập pipeline và nhận giá trị đầu ra.
+  	for n := range sq(sq(gen(2, 3))) {
+  		fmt.Println(n) // 16 rồi 81
+  	}
+  }
+  ```
+  
