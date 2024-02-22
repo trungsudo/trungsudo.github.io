@@ -101,6 +101,24 @@ mermaid: true
 
 - Cho phép hợp nhất kết quả từ nhiều channel vào một channel duy nhất
 
+```mermaid
+graph LR
+    subgraph Generator
+        A[Channel A]
+        B[Channel B] 
+        C[Channel C]
+    end
+    subgraph Fan in
+        M[Channel M]
+        A --> M
+        B --> M
+        C --> M
+    end
+    subgraph Processor
+        M --> P[Process data from channel]
+    end
+```
+
 ```go
 package main
 
@@ -160,6 +178,29 @@ func main() {
 ### Fan-out
 
 - Cho phép dữ liệu đọc từ một channel được gửi ra nhiều channel khác nhau
+
+```mermaid
+graph LR
+    subgraph Fan out
+        A[Channel A]
+        B[Channel B] 
+        C[Channel C]
+    end
+    subgraph Source
+        S[Channel S]
+        S --> A
+        S --> B
+        S --> C
+    end
+    subgraph Processor
+        PA[Process data from channel A]
+        PB[Process data from channel B]
+        PC[Process data from channel C]
+        A --> PA
+        B --> PB
+        C --> PC
+    end
+```
 
 ```go
 package main
@@ -228,6 +269,25 @@ func main() {
 
 - Một loạt các giai đoạn kết nối bởi các channel, trong đó mỗi giai đoạn là một nhóm các goroutine chạy cùng một hàm.
 - Mỗi giai đoạn nhận giá trị từ các channel đầu vào, thực hiện một số chức năng trên dữ liệu đó, thường tạo ra các giá trị mới, và gửi trả các giá trị qua các channel đầu ra.
+
+  ```mermaid
+  graph LR
+      subgraph Source
+          A[Generate data] --> B[Send to channel]
+      end
+      subgraph Stage 1
+          B --> C[Receive and process data]
+          C --> D[Send to channel]
+      end
+      subgraph Stage 2
+          D --> E[Receive and process data]
+          E --> F[Send to channel]
+      end
+      subgraph Sink
+          F --> G[Receive and consume data]
+      end
+  ```
+
 
   ```go
   package main
