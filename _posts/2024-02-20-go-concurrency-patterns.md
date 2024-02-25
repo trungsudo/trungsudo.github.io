@@ -68,7 +68,7 @@ mermaid: true
   ```
 
 - Trong ví dụ trên, chúng ta tạo ra một channel mới tên là `messages`. Sau đó, chúng ta tạo ra một goroutine mới, trong đó chúng ta gửi chuỗi "hello" vào channel. Cuối cùng, chúng ta đọc dữ liệu từ channel và in ra màn hình.
-- Ví dụ sau minh họa cách sử dụng Goroutine và Channel để tính tổng các số từ 1 đến 10:
+- Ví dụ sau minh họa cách sử dụng `Goroutine` và `Channel` để tính tổng các số từ 1 đến 10:
   
   ```go
   package main
