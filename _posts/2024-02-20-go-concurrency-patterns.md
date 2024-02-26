@@ -12,10 +12,8 @@ mermaid: true
 ### Goroutine
 
 - `Goroutine` là một trong những đặc trưng nổi bật nhất của ngôn ngữ lập trình Go. 
-- Chúng là các luồng thực thi nhẹ (lightweight execution thread), trái với các luồng thông thường do hệ điều hành quản lý, `Goroutine` được quản lý bởi Go runtime. Điều này giúp giảm bớt chi phí liên quan đến việc khởi tạo và chuyển đổi ngữ cảnh (context switching), làm cho `Goroutine` "nhẹ" hơn và khởi động nhanh hơn so với các luồng thông thường.
-- `Go Scheduler` là một phần của `Go runtime`, nó quản lý việc thực thi của các `Goroutine`. 
-  - `Go Scheduler` sử dụng mô hình M:N, trong đó M `Goroutine` chạy trên N luồng hệ điều hành. Điều này cho phép lập trình viên tạo ra hàng ngàn `Goroutine` mà không phải lo lắng về việc sử dụng quá nhiều tài nguyên hệ thống.
-  - `Go Scheduler` không sử dụng mô hình preemptive, nghĩa là một `Goroutine` sẽ tiếp tục chạy cho đến khi nó hoàn thành, bị chặn, hoặc tình nguyện nhường quyền điều khiển. Điều này giúp giảm bớt chi phí liên quan đến việc chuyển đổi ngữ cảnh.
+- Chúng là các luồng thực thi nhẹ (lightweight execution thread), trái với các luồng thông thường do hệ điều hành quản lý, `Goroutine` được quản lý bởi Go runtime. Điều này giúp giảm bớt chi phí liên quan đến việc khởi tạo và chuyển đổi ngữ cảnh (context switching), làm cho `Goroutine` "nhẹ" hơn và khởi động nhanh hơn so với các luồng thông thường. Điều này cho phép lập trình viên tạo ra hàng ngàn `Goroutine` mà không phải lo lắng về việc sử dụng quá nhiều tài nguyên hệ thống.
+- `Go Scheduler` là một phần của `Go runtime`, nó quản lý việc thực thi của các `Goroutine`, nó không sử dụng mô hình preemptive, nghĩa là một `Goroutine` sẽ tiếp tục chạy cho đến khi nó hoàn thành, bị chặn, hoặc tình nguyện nhường quyền điều khiển. Điều này giúp giảm bớt chi phí liên quan đến việc chuyển đổi ngữ cảnh.
 - Dưới đây là một ví dụ đơn giản về cách sử dụng `Goroutine` trong Go:
   
   ```go
